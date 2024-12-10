@@ -1,0 +1,27 @@
+server:
+  servlet:
+    context-path: /A-Jen
+  port: ${PORT}
+
+spring:
+  mvc:
+    view:
+      prefix: /WEB-INF/temp/
+      suffix: .jsp
+  datasource:
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    url: jdbc:sqlserver://${DB_HOST}:${DB_PORT};databaseName=${DB_NAME}
+    username: sa
+    password: WebShop!
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.SQLServer2012Dialect
+        format_sql: true
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    defer-datasource-initialization: true
+  sql:
+    init:
+      mode: ${SQL_INIT_MODE}

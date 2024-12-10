@@ -1,0 +1,18 @@
+services:
+  webshop-db:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    ports:
+      - "11433:1433"
+    env_file:
+      - dev.env
+    environment:
+      - ACCEPT_EULA=Y                 # Accept the SQL Server EULA
+      - SA_PASSWORD=WebShop!          # Set the SA password
+      - MSSQL_PID=Developer           # Use the free Developer edition
+      - MSSQL_DATABASE=webshop     # Automatically create the database
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql  # Mount the SQL initialization script
+      - webshop-data:/var/opt/mssql
+
+volumes:
+  webshop-data:
